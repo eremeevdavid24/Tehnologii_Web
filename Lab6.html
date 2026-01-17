@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Calendar Republica Moldova</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f4f8;
+        text-align: center;
+        padding: 20px;
+    }
+    input {
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid #444;
+        width: 150px;
+        font-size: 18px;
+    }
+    button {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #216aff;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    button:hover {
+        background: #0046d1;
+    }
+    .calendar {
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    .month {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    th {
+        background: #e0e0e0;
+        padding: 5px;
+    }
+    td {
+        padding: 6px;
+        border: 1px solid #ddd;
+    }
+    .holiday {
+        background: #ffb3b3 !important;
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h1>Calendar Republica Moldova</h1>
+<p>Introduceți anul:</p>
+<input type="number" id="year" placeholder="2025">
+<button onclick="generateCalendar()">Afișează</button>
+<div id="calendar" class="calendar"></div>
+<script>
+function generateCalendar() {
+    let year = document.getElementById("year").value;
+    if (year === "") {
+        alert("Introduceți un an!");
+        return;
+    }
+    const holidays = [
+        `${year}-01-01`,
+        `${year}-01-07`,
+        `${year}-01-08`,
+        `${year}-03-08`,
+        `${year}-05-01`,
+        `${year}-05-09`,
+        `${year}-08-27`,
+        `${year}-08-31`,
+        `${year}-12-25`
+    ];
+    const months = [
+        "Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie",
+        "Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie"
+    ];
+    let calendarDiv = document.getElementById("calendar");
+    calendarDiv.innerHTML = "";
+    for (let m = 0; m < 12; m++) {
+        let firstDay = new Date(year, m, 1).getDay();
+        if (firstDay === 0) firstDay = 7; 
+        let daysInMonth = new Date(year, m + 1, 0).getDate();
+        let html = `<div class='month'><h3>${months[m]}</h3>
+                    <table><tr>
+                    <th>L</th><th>Ma</th><th>Mi</th><th>J</th>
+                    <th>V</th><th>S</th><th>D</th></tr><tr>`;
+        for (let i = 1; i < firstDay; i++) html += "<td></td>";
+        for (let day = 1; day <= daysInMonth; day++) {
+            let dateStr = `${year}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+            let holidayClass = holidays.includes(dateStr) ? "holiday" : "";
+            html += `<td class="${holidayClass}">${day}</td>`;
+            if ((day + firstDay - 1) % 7 === 0) html += "</tr><tr>";
+        }
+        html += "</tr></table></div>";
+        calendarDiv.innerHTML += html;
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Număr Prim Maxim</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef1f5;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .container {
+        background: white;
+        padding: 25px;
+        width: 420px;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 2px solid #444;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    button {
+        width: 100%;
+        margin-top: 15px;
+        padding: 12px;
+        background: #0080ff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #005fcc;
+    }
+    .rezultat {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Componenta maximă dintre cele prime</h2>
+    <label>Introdu valoarea lui n (max 100):</label>
+    <input type="number" id="n" min="1" max="100">
+    <button onclick="genereazaVector()">Generează vectorul</button>
+    <div id="vector"></div>
+    <button onclick="calculeaza()" id="btnCalculeaza" style="display:none;">Calculează prim-max</button>
+    <div class="rezultat" id="rezultat"></div>
+</div>
+<script>
+function estePrim(x) {
+    if (x < 2) return false;
+    if (x === 2) return true;
+    if (x % 2 === 0) return false;
+    for (let i = 3; i * i <= x; i += 2) {
+        if (x % i === 0) return false;
+    }
+    return true;
+}
+let vectorGlobal = [];
+function genereazaVector() {
+    let n = Number(document.getElementById("n").value);
+    if (n < 1 || n > 100) {
+        document.getElementById("rezultat").innerHTML = "n trebuie să fie între 1 și 100!";
+        return;
+    }
+    vectorGlobal = [];
+    for (let i = 0; i < n; i++) {
+        vectorGlobal.push(Math.floor(Math.random() * 999) + 1);
+    }
+    document.getElementById("vector").innerHTML =
+        "<br><b>Vector generat:</b><br>" + vectorGlobal.join(", ");
+    document.getElementById("btnCalculeaza").style.display = "block";
+    document.getElementById("rezultat").innerHTML = "";
+}
+function calculeaza() {
+    let maxPrim = -1;
+    for (let x of vectorGlobal) {
+        if (estePrim(x) && x > maxPrim) {
+            maxPrim = x;
+        }
+    }
+    if (maxPrim === -1) {
+        document.getElementById("rezultat").innerHTML =
+            "Nu există numere prime în vector.";
+    } else {
+        document.getElementById("rezultat").innerHTML =
+            "Numărul prim maxim este: <b>" + maxPrim + "</b>";
+    }
+}
+</script>
+</body>
+</html>

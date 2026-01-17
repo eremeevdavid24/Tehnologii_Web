@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Navigare Istoric</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef1f5;
+        text-align: center;
+        padding-top: 60px;
+    }
+    button {
+        padding: 12px 25px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #006cff;
+        color: white;
+    }
+    button:hover {
+        background: #004fcc;
+    }
+</style>
+</head>
+<body>
+<h1>Navigare prin istoricul browserului</h1>
+<button onclick="inapoi()">⟵ Înapoi</button>
+<button onclick="inainte()">⟶ Înainte</button>
+<script>
+function inapoi() {
+    history.back();      
+}
+function inainte() {
+    history.forward();   
+}
+</script>
+</body>
+</html>

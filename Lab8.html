@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Colaj de imagini</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f0f2f5;
+        padding: 20px;
+        text-align: center;
+    }
+    #canvas {
+        border: 2px solid #333;
+        background: white;
+        cursor: grab;
+        margin-top: 20px;
+    }
+    input[type=file] {
+        margin-top: 20px;
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        background: #006cff;
+        color: white;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #004fcc;
+    }
+</style>
+</head>
+<body>
+<h1>Aplicație pentru realizarea unui colaj de imagini</h1>
+<input type="file" id="fileInput" accept="image/*" multiple>
+<br>
+<canvas id="canvas" width="800" height="600"></canvas>
+<br>
+<button onclick="saveImage()">Salvează colajul</button>
+<script>
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+let images = [];
+let objects = []; 
+document.getElementById("fileInput").addEventListener("change", function(event){
+    let files = event.target.files;
+    images = [];
+    for (let i = 0; i < files.length; i++){
+        let img = new Image();
+        img.src = URL.createObjectURL(files[i]);
+        img.onload = function(){
+            let x = (i % 3) * 260;
+            let y = Math.floor(i / 3) * 200;
+            objects.push({ img: img, x: x, y: y, w: 250, h: 180 });
+            drawAll();
+        };
+    }
+});
+function drawAll() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let obj of objects) {
+        ctx.drawImage(obj.img, obj.x, obj.y, obj.w, obj.h);
+    }
+}
+let dragging = false;
+let dragObj = null;
+let offsetX, offsetY;
+canvas.addEventListener("mousedown", function(e){
+    let rect = canvas.getBoundingClientRect();
+    let mx = e.clientX - rect.left;
+    let my = e.clientY - rect.top;
+    for (let obj of objects) {
+        if (mx > obj.x && mx < obj.x + obj.w && my > obj.y && my < obj.y + obj.h) {
+            dragging = true;
+            dragObj = obj;
+            offsetX = mx - obj.x;
+            offsetY = my - obj.y;
+            break;
+        }
+    }
+});
+canvas.addEventListener("mousemove", function(e){
+    if (!dragging) return;
+    let rect = canvas.getBoundingClientRect();
+    dragObj.x = e.clientX - rect.left - offsetX;
+    dragObj.y = e.clientY - rect.top - offsetY;
+
+    drawAll();
+});
+canvas.addEventListener("mouseup", function(){
+    dragging = false;
+    dragObj = null;
+});
+function saveImage() {
+    let link = document.createElement('a');
+    link.download = "colaj.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+}
+</script>
+</body>
+</html>

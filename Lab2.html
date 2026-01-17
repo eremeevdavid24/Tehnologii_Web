@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Număr – unități și zeci</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background: #f3f3f3;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .box{
+        background: white;
+        padding: 25px;
+        width: 350px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    input{
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 2px solid #444;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    button{
+        width: 100%;
+        margin-top: 15px;
+        padding: 12px;
+        background: #0066ff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover{
+        background: #004fcc;
+    }
+    .rezultat{
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #222;
+    }
+</style>
+</head>
+<body>
+<div class="box">
+    <h2>Determimnarea fegvenței unități și zeci</h2>
+    <label>Introdu un număr (max 9 cifre):</label>
+    <input type="number" id="numar" >
+    <button onclick="calculeaza()">Calculează</button>
+    <div class="rezultat" id="rezultat"></div>
+</div>
+<script>
+function calculeaza(){
+    let n = document.getElementById("numar").value;
+    if(n === ""){
+        document.getElementById("rezultat").innerHTML = "Introdu un număr!";
+        return;
+    }
+    n = parseInt(n, 10);
+    let copie = n;
+    let u = n % 10;                  
+    let z = Math.floor(n / 10) % 10; 
+    let contU = 0, contZ = 0;
+    while(copie > 0){
+        let c = copie % 10;
+        if(c === u) contU++;
+        if(c === z) contZ++;
+        copie = Math.floor(copie / 10);
+    }
+    document.getElementById("rezultat").innerHTML =
+        `Cifra unităților este <b>${u}</b> și apare de <b>${contU}</b> ori.<br>
+         Cifra zecilor este <b>${z}</b> și apare de <b>${contZ}</b> ori.`;
+}
+</script>
+</body>
+</html>
