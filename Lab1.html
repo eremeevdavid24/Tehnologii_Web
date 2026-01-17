@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Fotbal – Ghid complet</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #0e1a2b;
+        color: #ffffff;
+        background-image: url("https://i.imgur.com/lJA8UqY.jpeg");
+        background-size: cover;
+        background-attachment: fixed;
+        backdrop-filter: blur(6px);
+    }
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, rgba(0,140,255,0.9), rgba(0,70,140,0.9));
+        color: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    header h1 {
+        font-size: 45px;
+        text-shadow: 0 0 20px #00c3ff, 0 0 40px #0077ff;
+        animation: glow 3s infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #00c3ff; }
+        to   { text-shadow: 0 0 30px #00eaff; }
+    }
+    .container {
+        width: 90%;
+        max-width: 950px;
+        margin: 40px auto;
+        background: rgba(255,255,255,0.09);
+        padding: 35px;
+        border-radius: 18px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+        backdrop-filter: blur(8px);
+    }
+    h2, h3 {
+        color: #5ed7ff;
+        text-shadow: 0 0 10px #008cff;
+    }
+    p {
+        font-size: 17px;
+    }
+    ul, ol {
+        background: rgba(255,255,255,0.07);
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 6px solid #00aaff;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    }
+    li {
+        margin: 8px 0;
+    }
+    a {
+        color: #5ed7ff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 10px #00eaff;
+    }
+    .teren img {
+        width: 100%;
+        border-radius: 15px;
+        border: 3px solid #00b7ff;
+        box-shadow: 0 0 25px #00cfff;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        backdrop-filter: blur(6px);
+        background: rgba(0,0,0,0.4);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    table th {
+        background: #008cff;
+        padding: 15px;
+        font-size: 18px;
+        text-shadow: 0 0 5px #004f88;
+    }
+    table td {
+        padding: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    tr:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    video {
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 15px;
+        box-shadow: 0 0 25px #00c3ff;
+    }
+form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background: rgba(0,0,0,0.5);
+        padding: 25px;
+        border-radius: 18px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px #00b7ff;
+    }
+    label {
+        font-weight: bold;
+        color: #5ed7ff;
+    }
+    input, select, textarea {
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        font-size: 16px;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    }
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        box-shadow: 0 0 15px #00c3ff;
+    }
+    input[type="submit"] {
+        background: linear-gradient(135deg, #00c3ff, #0077ff);
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 5px 15px rgba(0,150,255,0.7);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+input[type="submit"]:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,200,255,1);
+    }
+
+</style>
+</head>
+<body>
+<header>
+    <h1>⚽ Ghidul Sportului Fotbal ⚽</h1>
+</header>
+<div class="container">
+<h2>Despre fotbal</h2>
+<p>
+Fotbalul este un sport de echipă practicat pe scară largă, jucat de două formații a câte 11 jucători, pe un teren 
+dreptunghiular împărțit în două zone egale. Scopul jocului este marcarea golurilor în poarta adversă, mingea fiind 
+controlată în principal cu picioarele, deoarece atingerea cu mâinile este interzisă jucătorilor de câmp. Fotbalul 
+este un fenomen global, cu peste 250 de milioane de practicanți în peste 200 de țări. Un meci se poate încheia în 
+trei moduri: victorie pentru gazde, remiză sau victorie pentru oaspeți.
+</p>
+<h3>Echipament necesar</h3>
+<ul>
+    <li>Minge de fotbal</li>
+    <li>Tricou sportiv</li>
+    <li>Șort sportiv</li>
+    <li>Jambiere</li>
+    <li>Ghete de fotbal</li>
+    <li>Apărători tibie</li>
+    <li>Mănuși pentru portar</li>
+</ul>
+<h3>Reguli de bază</h3>
+<ol>
+    <li>Fiecare echipă are 11 jucători.</li>
+    <li>Meciul: două reprize × 45 min.</li>
+    <li>Mâna este interzisă (în afara portarului).</li>
+    <li>Golul este valid doar dacă mingea trece complet linia porții.</li>
+    <li>Faulturile se sancționează cu cartonașe.</li>
+</ol>
+<h3>Regulamente oficiale</h3>
+<ul>
+    <li><a <a href="https://www.fmf.md/cdn/docs/Regulamentul%20Campionatului%20Republicii%20Moldova%20la%20Fotbal%20(modificat%2002.06.2025)%20(1).pdf">Regulamentul Campionatului RM</a></li>
+    <li><a href="https://www.fmf.md/cdn/docs/Regulamentul%20+%20Anexe%20LT,LT-2%202025-26%20(1).pdf">Regulament Liga Tineret</a></li>
+    <li><a href="https://mecc.gov.md/sites/default/files/regulamentul_turneului_republican_de_fotbal_cupa_guvernului.pdf">Turneul Republican "Cupa Guvernului"</a></li>
+</ul>
+<h3>Terenul de fotbal</h3>
+<div class="teren">
+    <img src="teren.png" alt="Teren de fotbal" usemap="#terenMap">
+</div>
+<map name="terenMap">
+    <area shape="rect"
+          coords="35,140,123,348"
+          href="#careu_stanga"
+          alt="Careul din stânga"
+          title="Careul din stânga">
+    <area shape="circle"
+        coords="318,223,65"
+        href="#zona_cerc"
+        alt="Zona circulară"
+        title="Zona circulară">
+    <area shape="rect"
+          coords="559,135,647,348"
+          href="#careu_dreapta"
+          alt="Careul din dreapta"
+          title="Careul din dreapta">
+</map>
+<h3>Pozițiile jucătorilor</h3>
+<table>
+    <tr>
+        <th>Poziție</th>
+        <th>Număr</th>
+        <th>Rol</th>
+    </tr>
+    <tr>
+        <td>Portar</td>
+        <td>1</td>
+        <td>Apără poarta</td>
+    </tr>
+    <tr>
+        <td>Fundași</td>
+        <td>3–5</td>
+        <td>Oprirea atacurilor</td>
+    </tr>
+    <tr>
+        <td>Mijlocași</td>
+        <td>3–5</td>
+        <td>Controlează jocul</td>
+    </tr>
+    <tr>
+        <td>Atacanți</td>
+        <td>1–3</td>
+        <td>Marchează goluri</td>
+    </tr>
+</table>
+<h3>Tutorial video</h3>
+<video controls>
+    <source src="fotbal.mp4" type="video/mp4">
+</video>
+<h3>Formular de înscriere</h3>
+<form>
+    <label>Nume și prenume:</label>
+    <input type="text" required>
+    <label>Vârsta:</label>
+    <input type="number" min="5" max="60" required>
+    <label>Nivel de experiență:</label>
+    <select>
+        <option>Începător</option>
+        <option>Mediu</option>
+        <option>Avansat</option>
+    </select>
+    <label>Poziția preferată:</label>
+    <input type="text">
+    <label>Număr de telefon:</label>
+    <input type="tel">
+    <label>Mesaj suplimentar:</label>
+    <textarea rows="3"></textarea>
+    <input type="submit" value="Trimite înscrierea">
+</form>
+</div>
+</body>
+</html>
+
+
